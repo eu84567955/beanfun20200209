@@ -27,6 +27,8 @@ before_package:
 artifacts:
 - path: BeanfunLogin-*.zip
   name: BeanfunLogin
+- path: Wix\bin\Debug\BeanfunLogin.msi
+  name: Installer
 deploy:
 - provider: GitHub
   release: $(appveyor_repo_tag_name)
