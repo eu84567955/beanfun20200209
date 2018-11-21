@@ -284,25 +284,41 @@ namespace BeanfunLogin
             try
             {
                 WebClient wc = new WebClient();
+                
                 string res = Encoding.UTF8.GetString(wc.DownloadData("http://tw.beanfun.com/game_zone/"));
                 Regex reg = new Regex("Services.ServiceList = (.*);");
+                // Dirty hacky code copied from the url above.
+                string json = "{\"Rows\":[{\"ServiceCode\":\"611639\",\"ServiceRegion\":\"T0\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u5929\u5802\u570B\u969B\u4F3A\u670D\u5668\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/lineagenew/www/index.aspx\",\"ServiceForumPageURL\":null,\"ServiceRank\":1,\"ServiceXLargeImageName\":\"20170823104401212_xl.jpg\",\"ServiceLargeImageName\":\"20170901170635618.jpg\",\"ServiceSmallImageName\":\"20170901170635618_s.jpg\",\"ServiceDownloadURL\":\"https://tw.event.beanfun.com/Lineagenew/EventAD/EventAD.aspx?EventADID=3849\",\"IsHotGame\":false,\"IsNewGame\":true,\"ServiceStartMode\":0,\"ServiceName\":\"\u5929\u5802\u570B\u969B\u4F3A\u670D\u5668\"},{\"ServiceCode\":\"600035\",\"ServiceRegion\":\"T7\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u5929\u5802\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/lineage\",\"ServiceForumPageURL\":null,\"ServiceRank\":1,\"ServiceXLargeImageName\":\"\",\"ServiceLargeImageName\":\"20120928124510872.jpg\",\"ServiceSmallImageName\":\"20120928124510872_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/Lineage/download.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u5929\u5802\"},{\"ServiceCode\":\"600037\",\"ServiceRegion\":\"T7\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u5929\u5802\u3002\u5065\u5EB7\u4F3A\u670D\u5668\",\"ServiceWebsiteURL\":\"http://tw.beanfun.com/lineage\",\"ServiceForumPageURL\":null,\"ServiceRank\":3,\"ServiceXLargeImageName\":\"\",\"ServiceLargeImageName\":\"20120928124542747.jpg\",\"ServiceSmallImageName\":\"20120928124542747_s.jpg\",\"ServiceDownloadURL\":\"http://tw.dl.lineage.beanfun.com/Lineage/TW_Lineage_8.1C7m19d.EXE\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u5929\u5802\u3002\u5065\u5EB7\u4F3A\u670D\u5668\"},{\"ServiceCode\":\"600041\",\"ServiceRegion\":\"BE\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u5929\u5802\u514D\u8CBB\u4F3A\u670D\u5668\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/LineageFree\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"20140206185307780_xl.jpg\",\"ServiceLargeImageName\":\"20140206185307780.jpg\",\"ServiceSmallImageName\":\"20140206185307780_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/Lineage/download.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u5929\u5802\u3002\u514D\u8CBB\u4F3A\u670D\u5668\"},{\"ServiceCode\":\"610074\",\"ServiceRegion\":\"T9\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u65B0\u6953\u4E4B\u8C37 MapleStory\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/maplestory\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"20140714122314126_xl.jpg\",\"ServiceLargeImageName\":\"20170110120804222.jpg\",\"ServiceSmallImageName\":\"20130531183006245_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/maplestory/index.aspx?url=dw_game.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u65B0\u6953\u4E4B\u8C37 Maplestory\"},{\"ServiceCode\":\"610153\",\"ServiceRegion\":\"TN\",\"ServiceSubtypeName\":\"\u5C04\u64CA\",\"ServiceFamilyName\":\"\u7D55\u5C0D\u6B66\u529B online\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/cso\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"\",\"ServiceLargeImageName\":\"20120928124729716.jpg\",\"ServiceSmallImageName\":\"20120928124729716_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/cso/download_01.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u7D55\u5C0D\u6B66\u529B online\"},{\"ServiceCode\":\"300148\",\"ServiceRegion\":\"AF\",\"ServiceSubtypeName\":\"\u52D5\u4F5C\",\"ServiceFamilyName\":\"\u827E\u723E\u4E4B\u5149\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/elsword\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"\",\"ServiceLargeImageName\":\"20120928125322403.jpg\",\"ServiceSmallImageName\":\"20120928125322403_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/ELSWORD/index.aspx?url=downloads/game.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u827E\u723E\u4E4B\u5149\"},{\"ServiceCode\":\"600309\",\"ServiceRegion\":\"A2\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u65B0\u746A\u5947mabinogi\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/mabinogi\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"20130820175530929_xl.jpg\",\"ServiceLargeImageName\":\"20130820175530929.jpg\",\"ServiceSmallImageName\":\"20130820175530929_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/mabinogi/index.aspx?url=4_download.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u65B0\u746A\u5947mabinogi\"},{\"ServiceCode\":\"610096\",\"ServiceRegion\":\"TE\",\"ServiceSubtypeName\":\"\u904B\u52D5\",\"ServiceFamilyName\":\"\u8DD1\u8DD1\u5361\u4E01\u8ECA\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/KartRider\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"\",\"ServiceLargeImageName\":\"20180528182935985.jpg\",\"ServiceSmallImageName\":\"20130306130219799_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/kartrider/download01.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u8DD1\u8DD1\u5361\u4E01\u8ECA\"},{\"ServiceCode\":\"610085\",\"ServiceRegion\":\"TC\",\"ServiceSubtypeName\":\"\u4F11\u9592\",\"ServiceFamilyName\":\"\u7206\u7206\u738B\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/bnb\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"\",\"ServiceLargeImageName\":\"20130306130235034.jpg\",\"ServiceSmallImageName\":\"20130306130235034_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/bnb/download.htm\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u7206\u7206\u738B\"},{\"ServiceCode\":\"610502\",\"ServiceRegion\":\"DN\",\"ServiceSubtypeName\":\"\u4F11\u9592\",\"ServiceFamilyName\":\"\u6CE1\u6CE1\u5927\u4E82\u9B25\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/bubblefighter\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"20130109175916093_xl.jpg\",\"ServiceLargeImageName\":\"20161219151936982.jpg\",\"ServiceSmallImageName\":\"20121127105241745_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/bubblefighter/GameDownload/DownLoad.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u6CE1\u6CE1\u5927\u4E82\u9B25\"},{\"ServiceCode\":\"610075\",\"ServiceRegion\":\"T9\",\"ServiceSubtypeName\":\"\u89D2\u8272\u626E\u6F14\",\"ServiceFamilyName\":\"\u65B0\u6953\u4E4B\u8C37\u9AD4\u9A57\u4F3A\u670D\u5668\",\"ServiceWebsiteURL\":\"https://tw.beanfun.com/maplestory/tserver.aspx\",\"ServiceForumPageURL\":null,\"ServiceRank\":0,\"ServiceXLargeImageName\":\"20140116141723301_xl.jpg\",\"ServiceLargeImageName\":\"20140116141723301.jpg\",\"ServiceSmallImageName\":\"20130531183019432_s.jpg\",\"ServiceDownloadURL\":\"https://tw.beanfun.com/maplestory/index.aspx?url=dw_game.aspx\",\"IsHotGame\":false,\"IsNewGame\":false,\"ServiceStartMode\":0,\"ServiceName\":\"\u6953\u4E4B\u8C37\u9AD4\u9A57\u4F3A\u670D\u5668\"}]}";
                 if (reg.IsMatch(res))
                 {
-                    string json = reg.Match(res).Groups[1].Value;
-                    JObject o = JObject.Parse(json);
-                    foreach (var game in o["Rows"])
-                    {
-                        Debug.Write(game["serviceCode"]);
-                        this.comboBox2.Items.Add((string)game["ServiceFamilyName"]);
-                        gameList.Add(new GameService((string)game["ServiceFamilyName"], (string)game["ServiceCode"], (string)game["ServiceRegion"]));
-                    }
+                    json = reg.Match(res).Groups[1].Value;
+                }
+
+                JObject o = JObject.Parse(json);
+                foreach (var game in o["Rows"])
+                {
+                    Debug.Write(game["serviceCode"]);
+                    this.comboBox2.Items.Add((string)game["ServiceFamilyName"]);
+                    gameList.Add(new GameService((string)game["ServiceFamilyName"], (string)game["ServiceCode"], (string)game["ServiceRegion"]));
                 }
 
                 try
                 {
-                    this.comboBox2.SelectedIndex = Properties.Settings.Default.loginGame;
+                    if (Properties.Settings.Default.loginGame < this.comboBox2.Items.Count)
+                    {
+                        this.comboBox2.SelectedIndex = Properties.Settings.Default.loginGame;
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.loginGame = 0;
+                        Properties.Settings.Default.Save();
+                    }
+
                 }
-                catch { /* ignore out of range */ }
+                catch
+                {
+
+                }
 
                 const string updateUrl = "https://raw.githubusercontent.com/kevin940726/BeanfunLogin/master/docs/index.md";
                 string response = wc.DownloadString(updateUrl);
