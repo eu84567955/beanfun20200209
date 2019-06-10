@@ -575,6 +575,7 @@ namespace BeanfunLogin
             passLabel.Visible = true;
             passwdInput.Visible = true;
 
+            useNewQRCode.Visible = false;
             qrcodeImg.Visible = false;
 
             rememberAccount.Visible = true;
@@ -600,6 +601,7 @@ namespace BeanfunLogin
                 passLabel.Visible = false;
                 passwdInput.Visible = false;
 
+                useNewQRCode.Visible = true;
                 qrcodeImg.Visible = true;
 
                 rememberAccount.Visible = false;
@@ -610,7 +612,7 @@ namespace BeanfunLogin
                 wait_qrWorker_notify.Text = "取得QRCode中 請稍後";
                 wait_qrWorker_notify.Visible = true;
 
-                this.qrWorker.RunWorkerAsync(null);
+                this.qrWorker.RunWorkerAsync(!useNewQRCode.Checked);
                 this.loginMethodInput.Enabled = false;
             }
             else
@@ -752,6 +754,15 @@ namespace BeanfunLogin
             if (Properties.Settings.Default.GAEnabled)
             {
                 AutoMeasurement.Client.TrackEvent("set game path", "set game path");
+            }
+        }
+
+        private void useNewQRCode_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            if (this.loginMethodInput.SelectedIndex == (int)LoginMethod.QRCode)
+            {
+                this.qrWorker.RunWorkerAsync(!useNewQRCode.Checked);
             }
         }
 
