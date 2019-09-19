@@ -157,10 +157,10 @@ namespace BeanfunLogin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public int loginGame {
+        [global::System.Configuration.DefaultSettingValueAttribute("610074_T9")]
+        public string loginGame {
             get {
-                return ((int)(this["loginGame"]));
+                return ((string)(this["loginGame"]));
             }
             set {
                 this["loginGame"] = value;
@@ -236,6 +236,18 @@ namespace BeanfunLogin.Properties {
             }
             set {
                 this["gamePathDB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useNewQRCode {
+            get {
+                return ((bool)(this["useNewQRCode"]));
+            }
+            set {
+                this["useNewQRCode"] = value;
             }
         }
     }
